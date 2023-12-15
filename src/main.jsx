@@ -9,8 +9,10 @@ import Home from "./pages/Home.jsx";
 import LogIn from "./pages/LogIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import AllPosts from "./pages/AllPosts.jsx";
+import AddPost from "./pages/AddPost.jsx";
+import EditPost from "./pages/EditPost.jsx";
+import Post from "./pages/Post.jsx";
 import { AuthLayout } from "./components/AuthLayout.jsx";
-
 
 const router = createBrowserRouter([
   {
@@ -19,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home/>
+        element: <Home />,
       },
       {
         path: "/login",
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
           <AuthLayout authentication={false}>
             <LogIn />
           </AuthLayout>
-        )
+        ),
       },
       {
         path: "/signup",
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
           <AuthLayout authentication={false}>
             <SignUp />
           </AuthLayout>
-        )
+        ),
       },
       {
         path: "/all-posts",
@@ -43,10 +45,34 @@ const router = createBrowserRouter([
           <AuthLayout authentication>
             <AllPosts />
           </AuthLayout>
-        )
-      }
-    ]
-  }
+        ),
+      },
+      {
+        path: "/add-post",
+        element: (
+          <AuthLayout authentication>
+            <AddPost />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/edit-post/:slug",
+        element: (
+          <AuthLayout authentication>
+            <EditPost />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/post:slug",
+        element: (
+          <AuthLayout authentication>
+            <Post />
+          </AuthLayout>
+        ),
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
