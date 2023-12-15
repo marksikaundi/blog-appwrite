@@ -1,9 +1,9 @@
 import React from 'react'
 
-function AuthLayout() {
+function Protected() {
   return (
-    <div>AuthLayout</div>
+    <div>Protected</div>
   )
 }
 
-export default AuthLayout
+export default Protected
