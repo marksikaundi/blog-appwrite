@@ -8,6 +8,7 @@ import store from "./store/store.js";
 import Home from "./pages/Home.jsx";
 import LogIn from "./pages/LogIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import AllPosts from "./pages/AllPosts.jsx";
 import { AuthLayout } from "./components/AuthLayout.jsx";
 
 
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
         element: (
           <AuthLayout authentication={false}>
             <SignUp />
+          </AuthLayout>
+        )
+      },
+      {
+        path: "/all-posts",
+        element: (
+          <AuthLayout authentication>
+            <AllPosts />
           </AuthLayout>
         )
       }
