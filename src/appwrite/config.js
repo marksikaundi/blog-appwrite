@@ -1,6 +1,7 @@
+/* eslint-disable no-unreachable */
 /* eslint-disable no-dupe-class-members */
 /* eslint-disable no-unused-vars */
-import { Client, Databases, Storage, Query } from "appwrite";
+import { Client, Databases, Storage, Query, ID } from "appwrite";
 import conf from "../conf/conf.js";
 
 export class Service {
@@ -79,14 +80,51 @@ export class Service {
 
   async deletePost(slug) {
     try {
-      return await this.databases.deleteDocument(
+      await this.databases.deleteDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
       );
+      return true;
     } catch (error) {
       console.log("Appwrite service :: deleteDocument() ::", error);
       return false;
     }
   }
+
+  // STORAGE SERVICES
+  async uploadFile(file) {
+    try {
+      return await this.bucket.createFile(
+        conf.appwriteBucketId,
+        ID.unique(),
+        file
+      );
+    } catch (error) {
+      console.log("Appwrite service :: uploadFile() :: ", error);
+      return false;
+    }
+  }
+
+  async deleteFile(fileId) {
+    try {
+      return await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
+    } catch (error) {
+      console.log("Appwrite service :: deleteFile() :: ", error);
+      return false;
+    }
+  }
+
+  getFilePreview(fileId){
+    return this.bucket.getFilePreview(
+      conf.appwriteBucketId,
+      fileId
+    ).href
+
+  }
 }
+
+
+
+const service = new Service()
+export default service
