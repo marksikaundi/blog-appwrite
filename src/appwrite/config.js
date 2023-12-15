@@ -115,16 +115,10 @@ export class Service {
     }
   }
 
-  getFilePreview(fileId){
-    return this.bucket.getFilePreview(
-      conf.appwriteBucketId,
-      fileId
-    ).href
-
+  getFilePreview(fileId) {
+    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId).href;
   }
 }
 
-
-
-const service = new Service()
-export default service
+const service = new Service();
+export default service;
