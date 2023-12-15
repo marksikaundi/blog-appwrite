@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Protected() {
+function Protected({ children, aunthentication }) {
   return (
-    <div>Protected</div>
+    <>{children}</>
   )
 }
 
